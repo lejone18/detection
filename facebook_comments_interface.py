@@ -14,7 +14,11 @@ from selenium.common.exceptions import TimeoutException
 from time import sleep
 import os
 import nltk
+
+# Downloading necessary NLTK data
 nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 # Function to preprocess text
 def preprocess_text(text):
