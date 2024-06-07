@@ -71,7 +71,7 @@ def scrape_comments():
     df_comments = pd.DataFrame({"Comments": comment_list})
     
     # Update this path to a directory where you have write permissions
-    output_path = os.path.expanduser("~/Desktop/IT IS WELL/Project/Final/facebook_comments.csv")
+    output_path = os.path.expanduser("./facebook_comments.csv")
     df_comments.to_csv(output_path, index=False)
     st.subheader("Scraped Data")
     st.dataframe(df_comments)
@@ -124,7 +124,7 @@ if nav_choice == "Scraping":
 
 elif nav_choice == "Analysis":
     if st.button("Analyze Comments"):
-        df_comments = pd.read_csv("facebook_comments.csv")
+        df_comments = pd.read_csv("./facebook_comments.csv")
         perform_analysis(df_comments)
         st.success("Comments analyzed!")
 
@@ -132,8 +132,8 @@ elif nav_choice == "Detection":
     text_input = st.text_input("Enter text for bullying detection:")
     if text_input:
         cleaned_bullying_words = preprocess_text(text_input)
-        vectorizer = joblib.load('tfidf_vectorizer.joblib')
-        loaded_model = joblib.load('random_forest_model.joblib')
+        vectorizer = joblib.load('./tfidf_vectorizer.joblib')
+        loaded_model = joblib.load('./random_forest_model.joblib')
         X_input = vectorizer.transform([cleaned_bullying_words]).toarray()
         predicted_type = loaded_model.predict(X_input)[0]
         class_name = "Bully" if predicted_type == 1 else "Non-Bully"
