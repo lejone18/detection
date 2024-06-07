@@ -13,6 +13,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from time import sleep
 import os
+import nltk
+nltk.download('punkt')
 
 # Function to preprocess text
 def preprocess_text(text):
